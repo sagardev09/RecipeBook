@@ -29,71 +29,71 @@ const CategoryCard = () => {
         {
             name: "Appetizers",
             image: Appetizers,
-            desc: "Explore creative and innovative design inspirations.",
+            desc: "Start your meal with tantalizing appetizers that will excite your taste buds.",
             path: "category/appetizers"
         },
         {
             name: "Soups",
             image: Soups,
-            desc: "Stay in the loop with the latest fashion trends and styles.",
+            desc: "Warm up with comforting soups filled with hearty ingredients and rich flavors.",
             path: "category/soups"
         },
         {
             name: "Salads",
             image: Salads,
-            desc: "Discover a world of artistic creations and expressions.",
+            desc: "Indulge in refreshing and nutritious salads packed with fresh produce and vibrant colors.",
             path: "category/salads"
         },
         {
             name: "Main Courses",
             image: MainCourses,
-            desc: "Get inspired by home decor ideas and interior designs.",
+            desc: "Explore a variety of satisfying main courses that will become family favorites.",
             path: "category/main_course"
         },
         {
             name: "Desserts",
             image: Desserts,
-            desc: "Capture the moment with stunning photography insights.",
+            desc: "Satisfy your sweet tooth with decadent desserts that are perfect for any occasion.",
             path: "category/desserts"
         },
         {
             name: "Drinks",
             image: Drinks,
-            desc: "Delight your taste buds with mouthwatering recipes and food ideas.",
+            desc: "Quench your thirst with refreshing drinks and flavorful beverage recipes.",
             path: "category/drinks"
         },
         {
             name: "Baking Recipes",
             image: BakingRecipes,
-            desc: "Embark on a journey to beautiful travel destinations around the world.",
+            desc: "Discover the joy of baking with delicious recipes for cakes, cookies, and more.",
             path: "category/baking"
         },
         {
             name: "Grilling Recipes",
             image: GrillingRecipes,
-            desc: "Plan your dream wedding with tips and inspiration.",
+            desc: "Fire up the grill and enjoy delicious grilled dishes perfect for outdoor gatherings.",
             path: "category/grilling"
         },
         {
             name: "Vegetarian Dishes",
             image: VegetarianDishes,
-            desc: "Find motivation and tips for a healthy and active lifestyle.",
+            desc: "Explore a world of flavor with satisfying vegetarian dishes that are both delicious and nutritious.",
             path: "category/vegetarian"
         },
         {
             name: "Comfort Foods",
             image: ComfortFoods,
-            desc: "Discover inspiration through thought-provoking quotes.",
+            desc: "Find comfort in classic comfort foods that bring warmth and nostalgia to any meal.",
             path: "category/comfort_food"
         },
         {
             name: "International Cuisine",
             image: InternationalCuisine,
-            desc: "Stay updated on the latest technology innovations and trends.",
+            desc: "Embark on a culinary journey around the world and discover the diverse flavors of international cuisine.",
             path: "category/international"
         },
-
     ];
+
 
 
     return (

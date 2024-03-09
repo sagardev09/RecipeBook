@@ -5,7 +5,7 @@ import { FaHeart, FaShare } from 'react-icons/fa'
 
 const SingleCard = (item) => {
 
-    const { user } = useAppContext()
+    const { user, shareRecipe } = useAppContext()
     const shortdesc = item.desc.length > 100 ? item.desc.substring(0, 100) + "..." : item.desc;
 
     return (
@@ -23,7 +23,7 @@ const SingleCard = (item) => {
                         Like
                     </span>}
                     <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 cursor-pointer"
-                        onClick={() => shareRecipe(title, id)}
+                        onClick={() => shareRecipe(item.title, item.id)}
                     >
                         <FaShare className="inline-block align-middle mr-1" />
                         Share

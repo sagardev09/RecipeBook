@@ -12,13 +12,13 @@ const GlobalContext = createContext();
 export const GlobalContextProvider = ({ children }) => {
     const auth = getAuth(app);
     const db = getFirestore(app);
-
     const [user, setuser] = useState(null)
     const [UserDetails, setUserDetails] = useState({})
     const [AllReciepe, setAllReciepe] = useState([])
     const [SearchRecipe, setSearchRecipe] = useState(AllReciepe)
     const [searchtext, setsearchtext] = useState("")
     const [savedpost, setsavedpost] = useState([])
+    const [isSavedPostLoading, setisSavedPostLoading] = useState(false)
     // const [error, setError] = useState(null);
 
     const FetchCurrUserDetails = async (userId) => {
@@ -154,21 +154,18 @@ export const GlobalContextProvider = ({ children }) => {
         try {
             const savedPostRef = doc(db, "savedPosts", UserDetails.userid);
 
-            // Check if the post ID already exists in the array
             const savedPostSnapshot = await getDoc(savedPostRef);
             if (savedPostSnapshot.exists()) {
                 const savedPostData = savedPostSnapshot.data();
                 if (savedPostData.id.includes(postId)) {
                     console.log('Post already saved.');
-                    return; // Exit function if post ID already exists
+                    return;
                 }
 
-                // If post ID doesn't exist, update the document and add the post ID to the array
                 await updateDoc(savedPostRef, {
                     id: arrayUnion(postId),
                 });
             } else {
-                // If no saved posts exist for the user, create a new document with the post ID
                 const postData = {
                     userName: UserDetails.name,
                     id: [postId],
@@ -177,7 +174,6 @@ export const GlobalContextProvider = ({ children }) => {
 
                 await setDoc(savedPostRef, postData);
             }
-
             console.log('Post saved successfully.');
         } catch (error) {
             console.error('Error saving post:', error);
@@ -186,6 +182,7 @@ export const GlobalContextProvider = ({ children }) => {
 
 
     const fetchsavedpost = async () => {
+        setisSavedPostLoading(true)
         try {
             const savedPostRef = doc(db, "savedPosts", UserDetails.userid);
 
@@ -211,6 +208,7 @@ export const GlobalContextProvider = ({ children }) => {
                     }
 
                     // Log the fetched posts
+                    setisSavedPostLoading(false)
                     setsavedpost(fetchedPosts)
                     console.log('Fetched posts:', fetchedPosts);
                 } else {
@@ -223,6 +221,26 @@ export const GlobalContextProvider = ({ children }) => {
         } catch (error) {
             console.error('Error fetching saved posts:', error);
         }
+    };
+
+    const shareRecipe = async (title, id) => {
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: title,
+                    text: `Check out this delicious recipe: ${title}`,
+                    url: `http://localhost:3000/recipe/${id}`
+                });
+                console.log("Recipe shared successfully");
+            } catch (error) {
+                console.error("Error sharing recipe:", error);
+            }
+        }
+        else {
+            navigator.clipboard.writeText(`http://localhost:3000/recipe/${id}`)
+            toast.info(`http://localhost:3000/recipe/${id}`)
+        }
+
     };
 
 
@@ -250,7 +268,7 @@ export const GlobalContextProvider = ({ children }) => {
 
 
     return (
-        <GlobalContext.Provider value={{ user, signup, login, logout, UserDetails, fetchAllReceiepe, AllReciepe, setSearchRecipe, SearchRecipe, setsearchtext, searchtext, Search, savepost, fetchsavedpost, savedpost }}>
+        <GlobalContext.Provider value={{ user, signup, login, logout, UserDetails, fetchAllReceiepe, AllReciepe, setSearchRecipe, SearchRecipe, setsearchtext, searchtext, Search, savepost, fetchsavedpost, savedpost, isSavedPostLoading, shareRecipe }}>
             {children}
         </GlobalContext.Provider>
     );

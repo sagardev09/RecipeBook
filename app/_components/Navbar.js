@@ -43,33 +43,33 @@ const Navbar = () => {
                                 <ul className="flex items-center gap-6 text-sm">
                                     <li>
                                         <Link href={"/"}>
-                                            <div className={`${isActivelink("/") ? "bg-gray-200" : "bg-transparent"} flex items-center gap-2 p-2 px-6 rounded-md `}>
-                                                <h5 className={`${isActivelink("/") ? "text-indigo-500" : "text-black"} font-medium capitalize`}>Home</h5>
+                                            <div className={`${isActivelink("/") ? "bg-gray-100" : "bg-transparent"} flex items-center gap-2 p-2 px-6 rounded-md transition-all 300ms`}>
+                                                <h5 className={`${isActivelink("/") ? "text-indigo-500" : "text-black"} font-medium capitalize hover:text-indigo-500 transition-all 300ms`}>Home</h5>
                                             </div> </Link>
                                     </li>
 
                                     <li>
                                         <Link href={"/create"} onClick={handleCreateClick} className={!user ? "cursor-not-allowed" : "cursor-pointer"}>
-                                            <div className={`${isActivelink("/create") ? "bg-gray-200" : "bg-transparent"} flex items-center gap-2 p-2 px-6 rounded-md `}>
+                                            <div className={`${isActivelink("/create") ? "bg-gray-100" : "bg-transparent"} flex items-center gap-2 p-2 px-6 rounded-md transition-all 300ms`}>
 
-                                                <h5 className={`${isActivelink("/create") ? "text-indigo-500" : "text-black"} font-medium capitalize`}>create</h5>
+                                                <h5 className={`${isActivelink("/create") ? "text-indigo-500" : "text-black"} font-medium capitalize hover:text-indigo-500 transition-all 300ms`}>create</h5>
                                             </div>
                                         </Link>
                                     </li>
 
                                     <li>
                                         <Link href={"/category"}>
-                                            <div className={`${isActivelink("/category") ? "bg-gray-200" : "bg-transparent"} flex items-center gap-2 px-6 p-2 rounded-md `}>
+                                            <div className={`${isActivelink("/category") ? "bg-gray-100" : "bg-transparent"} flex items-center gap-2 px-6 p-2 rounded-md transition-all 300ms`}>
 
-                                                <h5 className={`${isActivelink("/category") ? "text-indigo-500" : "text-black"} font-medium capitalize`}>Category</h5>
+                                                <h5 className={`${isActivelink("/category") ? "text-indigo-500" : "text-black"} font-medium capitalize hover:text-indigo-500 transition-all 300ms`}>Category</h5>
                                             </div>
                                         </Link>
                                     </li>
                                     {user && <li>
                                         <Link href={"/saved"}>
-                                            <div className={`${isActivelink("/saved") ? "bg-gray-200" : "bg-transparent"} flex items-center gap-2 px-6 p-2 rounded-md `}>
+                                            <div className={`${isActivelink("/saved") ? "bg-gray-100" : "bg-transparent"} flex items-center gap-2 px-6 p-2 rounded-md transition-all 300ms `}>
 
-                                                <h5 className={`${isActivelink("/saved") ? "text-indigo-500" : "text-black"} font-medium capitalize`}>Saved</h5>
+                                                <h5 className={`${isActivelink("/saved") ? "text-indigo-500" : "text-black"} font-medium capitalize hover:text-indigo-500 transition-all 300ms`}>Saved</h5>
                                             </div>
                                         </Link>
                                     </li>}

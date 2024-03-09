@@ -13,10 +13,10 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="p-4">
+    <main className="p-4 max-w-7xl mx-auto">
       <Options />
       {SearchRecipe.length !== 0 ? (
-        <div className="flex items-center justify-normal gap-8">
+        <div className="flex items-center justify-normal gap-8 flex-wrap py-4">
           {SearchRecipe.map((item) => (
             <ReciepeCard key={item.id} {...item} />
           ))}
@@ -24,7 +24,7 @@ export default function Home() {
       ) : AllReciepe.length !== 0 ? (
         <div>No results found.</div>
       ) : (
-        <div className="h-screen w-screen flex items-center justify-center">
+        <div className="h-[80vh] max-w-7xl mx-auto flex items-center justify-center">
           <Vortex
             visible={true}
             height="80"
