@@ -8,7 +8,7 @@ const SavedCard = (item) => {
     const shortdesc = item.desc.length > 80 ? item.desc.substring(0, 80) + "..." : item.desc;
 
     return (
-        <div className="w-[360px] rounded overflow-hidden shadow-lg bg-white h-[450px] flex flex-col justify-between flex-grow">
+        <div className="w-[390px] rounded overflow-hidden shadow-lg bg-white h-[450px] flex flex-col justify-between ">
             <img className="w-full h-[200px] object-cover" src={item.image} alt={item.title} />
             <div className="px-6 py-4 flex flex-col gap-2">
                 <div className="font-light text-lg mb-2">Recipe Name :- {item.title}</div>

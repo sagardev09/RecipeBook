@@ -3,14 +3,14 @@ import React, { useState, useEffect } from 'react'
 import UploadImage from './UploadImage'
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage"
 import { app } from "@/utils/FirebaseConfig"
-import { doc, getFirestore, setDoc } from 'firebase/firestore'
+import { doc, getFirestore, serverTimestamp, setDoc } from 'firebase/firestore'
 import { useRouter } from 'next/navigation'
 import { Vortex } from 'react-loader-spinner'
 import { useAppContext } from '@/context/GlobalContext'
 
 function Form() {
 
-    const { user, UserDetails } = useAppContext();
+    const { UserDetails } = useAppContext();
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
     const [link, setLink] = useState("");
@@ -53,7 +53,8 @@ function Form() {
                     userName: UserDetails.name,
                     email: UserDetails.email,
                     id: postId,
-                    userid: UserDetails.userid
+                    userid: UserDetails.userid,
+                    timestamp: serverTimestamp()
                 }
 
                 await setDoc(doc(db, 'receiepe', postId),

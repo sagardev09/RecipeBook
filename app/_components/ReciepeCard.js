@@ -14,10 +14,11 @@ const RecipeCard = (props) => {
 
 
 
+
     return (
 
-        <div className="w-[350px] rounded overflow-hidden shadow-lg bg-white h-[450px] flex flex-col justify-between flex-grow">
-            <img className="w-full h-[200px] object-cover" src={image} alt={title} />
+        <div className="w-[390px] rounded overflow-hidden shadow-lg bg-white h-[450px] flex flex-col justify-between ">
+            <img className="w-full h-[200px] object-cover" loading='lazy' src={image} alt={title} />
             <div className="px-6 py-4 flex flex-col gap-2">
                 <div className=" text-lg mb-2 font-medium capitalize">Recipe Name :- {title}</div>
                 <p className="text-gray-700 text-sm font-normal ">Category : - {category}</p>

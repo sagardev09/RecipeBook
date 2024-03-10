@@ -10,7 +10,7 @@ const SingleCard = (item) => {
 
     return (
         <Link href={`/recipe/${item.id}`}>
-            <div className="w-[400px] rounded overflow-hidden shadow-lg bg-white h-[500px] flex flex-col justify-between">
+            <div className="w-[390px] rounded overflow-hidden shadow-lg bg-white h-[500px] flex flex-col justify-between">
                 <img className="w-full h-[200px]" src={item.image} alt={item.title} />
                 <div className="px-6 py-4">
                     <h1 className="font-light text-lg mb-2">Recipe Name :- {item.title}</h1>

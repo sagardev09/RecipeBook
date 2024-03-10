@@ -44,7 +44,7 @@ const RecipePage = ({ params }) => {
     }, [params])
 
     return (
-        <div className="px-4">
+        <div className=" p-4 max-w-7xl mx-auto">
             <div className="flex items-center gap-4">
                 <div
                     className="p-4 hover:bg-gray-200 rounded-full cursor-pointer flex items-center justify-center"
@@ -74,12 +74,9 @@ const RecipePage = ({ params }) => {
                     </div>
 
                 ) : (
-                    <div className='mt-7 px-2 md:px-5
-        columns-2 md:columns-3
-        lg:columns-4 mb-4
-        xl:columns-5 space-y-6 mx-auto'>
+                    <div className="flex items-center justify-normal gap-8 flex-wrap py-4 px-1">
                         {categorydata.map((item, index) => (
-                            <div key={index}>
+                            <div key={index} >
                                 <SingleCard {...item} />
                             </div>
                         ))}

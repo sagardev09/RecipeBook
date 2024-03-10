@@ -49,7 +49,7 @@ const DetailedRecipe = ({ params }) => {
                 <img src={CurrentRecipe?.image} className='object-cover h-full w-full' alt="" />
                 <h1 className='font-normal text-4xl my-4'>{CurrentRecipe?.title}</h1>
                 <h5 className='my-4 capitalize text-sm underline font-medium'>{CurrentRecipe?.category}</h5>
-                <h5>{CurrentRecipe?.desc}</h5>
+                <h5 className='' style={{ whiteSpace: 'pre-wrap' }}>{CurrentRecipe?.desc}</h5>
                 <h5 className='capitalize font-bold my-4'>made by - {CurrentRecipe?.userName}</h5>
             </div>
                 :

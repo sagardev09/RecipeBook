@@ -1,7 +1,7 @@
 "use client"
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
-import { getFirestore, collection, getDocs, query, where, setDoc, doc, updateDoc, arrayUnion, getDoc, } from "firebase/firestore";
+import { getFirestore, collection, getDocs, query, where, setDoc, doc, updateDoc, arrayUnion, getDoc, orderBy, } from "firebase/firestore";
 import { app } from "@/utils/FirebaseConfig"
 import { toast } from 'react-toastify';
 
@@ -19,7 +19,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [searchtext, setsearchtext] = useState("")
     const [savedpost, setsavedpost] = useState([])
     const [isSavedPostLoading, setisSavedPostLoading] = useState(false)
-    // const [error, setError] = useState(null);
+    const [isfetchlatest, setisfetchlatest] = useState(false)
 
     const FetchCurrUserDetails = async (userId) => {
         try {
@@ -148,6 +148,30 @@ export const GlobalContextProvider = ({ children }) => {
         setSearchRecipe(filteredRecipes)
     }
 
+    const fetchlatest = async () => {
+        const recipeCollection = collection(db, 'receiepe');
+        const recipeQuery = query(recipeCollection, orderBy('timestamp', "desc"));
+        const querySnapshot = await getDocs(recipeQuery);
+        const recipesData = querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+        setisfetchlatest(true)
+        setSearchRecipe(recipesData);
+    }
+
+    const CancelFetchLatest = async () => {
+        const recipeCollection = collection(db, 'receiepe');
+        const recipeQuery = query(recipeCollection, orderBy('timestamp', "asc"));
+        const querySnapshot = await getDocs(recipeQuery);
+        const recipesData = querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+        setisfetchlatest(false)
+        setSearchRecipe(recipesData);
+    }
+
     //save recipe post for particular user
 
     const savepost = async (postId) => {
@@ -158,6 +182,7 @@ export const GlobalContextProvider = ({ children }) => {
             if (savedPostSnapshot.exists()) {
                 const savedPostData = savedPostSnapshot.data();
                 if (savedPostData.id.includes(postId)) {
+                    toast.success("saved")
                     console.log('Post already saved.');
                     return;
                 }
@@ -174,6 +199,7 @@ export const GlobalContextProvider = ({ children }) => {
 
                 await setDoc(savedPostRef, postData);
             }
+            toast.success("saved")
             console.log('Post saved successfully.');
         } catch (error) {
             console.error('Error saving post:', error);
@@ -213,12 +239,15 @@ export const GlobalContextProvider = ({ children }) => {
                     console.log('Fetched posts:', fetchedPosts);
                 } else {
                     // Data does not belong to the current user
+                    setisSavedPostLoading(false)
                     console.log('No saved posts found for the current user.');
                 }
             } else {
+                setisSavedPostLoading(false)
                 console.log('No saved posts found.');
             }
         } catch (error) {
+            setisSavedPostLoading(false)
             console.error('Error fetching saved posts:', error);
         }
     };
@@ -268,7 +297,7 @@ export const GlobalContextProvider = ({ children }) => {
 
 
     return (
-        <GlobalContext.Provider value={{ user, signup, login, logout, UserDetails, fetchAllReceiepe, AllReciepe, setSearchRecipe, SearchRecipe, setsearchtext, searchtext, Search, savepost, fetchsavedpost, savedpost, isSavedPostLoading, shareRecipe }}>
+        <GlobalContext.Provider value={{ user, signup, login, logout, UserDetails, fetchAllReceiepe, AllReciepe, setSearchRecipe, SearchRecipe, setsearchtext, searchtext, Search, savepost, fetchsavedpost, savedpost, isSavedPostLoading, shareRecipe, fetchlatest, isfetchlatest, CancelFetchLatest }}>
             {children}
         </GlobalContext.Provider>
     );

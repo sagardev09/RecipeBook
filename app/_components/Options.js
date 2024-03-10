@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 
 const Options = () => {
 
-    const { setsearchtext, searchtext, Search } = useAppContext()
+    const { setsearchtext, searchtext, Search, fetchlatest, isfetchlatest, CancelFetchLatest } = useAppContext()
 
     useEffect(() => {
         Search()
@@ -50,8 +50,14 @@ const Options = () => {
                     </span>
                 </div>
             </div>
-            <div>
-                <button className='px-6 text-sm border border-gray-200 p-2 rounded-md'>Latest</button>
+            <div className='relative'>
+                <button className={isfetchlatest ? 'px-6  pr-10 text-sm border border-gray-200 p-2 rounded-md' : "px-6 text-sm border border-gray-200 p-2 rounded-md"}
+                    onClick={fetchlatest}
+                >Latest
+                </button>
+                {isfetchlatest && <span className='absolute cursor-pointer right-2 top-[6px] bg-red-500 rounded-full p-1 text-xs px-2 text-white'
+                    onClick={CancelFetchLatest}
+                >X</span>}
             </div>
         </div>
     )

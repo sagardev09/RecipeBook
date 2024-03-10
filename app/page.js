@@ -16,7 +16,7 @@ export default function Home() {
     <main className="p-4 max-w-7xl mx-auto">
       <Options />
       {SearchRecipe.length !== 0 ? (
-        <div className="flex items-center justify-normal gap-8 flex-wrap py-4">
+        <div className="flex items-center justify-normal gap-8 flex-wrap py-4 px-1">
           {SearchRecipe.map((item) => (
             <ReciepeCard key={item.id} {...item} />
           ))}
