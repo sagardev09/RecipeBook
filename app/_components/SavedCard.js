@@ -8,7 +8,7 @@ const SavedCard = (item) => {
     const shortdesc = item.desc.length > 80 ? item.desc.substring(0, 80) + "..." : item.desc;
 
     return (
-        <div className="w-[390px] rounded overflow-hidden shadow-lg bg-white h-[450px] flex flex-col justify-between ">
+        <div className="w-[390px] rounded overflow-hidden shadow-2xl shadow-indigo-200 bg-white h-[450px] flex flex-col justify-between ">
             <img className="w-full h-[200px] object-cover" src={item.image} alt={item.title} />
             <div className="px-6 py-4 flex flex-col gap-2">
                 <div className="font-light text-lg mb-2">Recipe Name :- {item.title}</div>
@@ -18,14 +18,14 @@ const SavedCard = (item) => {
             </div>
             <div className="px-6 py-2 mb-4 flex items-center gap-2">
 
-                <span className=" bg-gray-200 rounded-full px-3 h-8 flex items-center justify-center text-sm font-medium text-gray-700 mr-2 cursor-pointer hover:text-gray-600"
+                <span className="flex items-center bg-indigo-500 rounded-md px-3 py-2 text-sm font-semibold text-white mr-2 cursor-pointer"
                     onClick={() => shareRecipe(item.title, item.id)}
                 >
-                    <FaShare className="inline-block align-middle mr-2 h-4 w-4" />
+                    <FaShare className="inline-block align-middle mr-1" />
                     Share
                 </span>
                 <Link href={`/recipe/${item.id}`}>
-                    <span className="inline-block bg-gray-200 rounded-full px-3 py-2  text-xs  text-gray-700 cursor-pointer font-medium"
+                    <span className="inline-block bg-indigo-500 rounded-md px-3 py-2  text-sm font-medium text-white hover:bg-indigo-400 cursor-pointer"
                     >
                         Read more
                     </span>
