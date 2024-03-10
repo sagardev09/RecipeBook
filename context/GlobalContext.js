@@ -264,7 +264,7 @@ export const GlobalContextProvider = ({ children }) => {
                 await navigator.share({
                     title: title,
                     text: `Check out this delicious recipe: ${title}`,
-                    url: `http://localhost:3000/recipe/${id}`
+                    url: `https://recipe-book-black.vercel.app/recipe/${id}`
                 });
                 console.log("Recipe shared successfully");
             } catch (error) {
@@ -272,8 +272,8 @@ export const GlobalContextProvider = ({ children }) => {
             }
         }
         else {
-            navigator.clipboard.writeText(`http://localhost:3000/recipe/${id}`)
-            toast.info(`http://localhost:3000/recipe/${id}`)
+            navigator.clipboard.writeText(`https://recipe-book-black.vercel.app/recipe/${id}`)
+            toast.info(`https://recipe-book-black.vercel.app/recipe/${id}`)
         }
 
     };
