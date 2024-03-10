@@ -148,6 +148,8 @@ export const GlobalContextProvider = ({ children }) => {
         setSearchRecipe(filteredRecipes)
     }
 
+    //fetch latest recipe by time
+
     const fetchlatest = async () => {
         const recipeCollection = collection(db, 'receiepe');
         const recipeQuery = query(recipeCollection, orderBy('timestamp', "desc"));
@@ -159,6 +161,8 @@ export const GlobalContextProvider = ({ children }) => {
         setisfetchlatest(true)
         setSearchRecipe(recipesData);
     }
+
+    //Undo the previous fetchlatest function
 
     const CancelFetchLatest = async () => {
         const recipeCollection = collection(db, 'receiepe');
@@ -206,7 +210,7 @@ export const GlobalContextProvider = ({ children }) => {
         }
     };
 
-
+    // fetch the saved post data
     const fetchsavedpost = async () => {
         setisSavedPostLoading(true)
         try {
@@ -252,6 +256,8 @@ export const GlobalContextProvider = ({ children }) => {
         }
     };
 
+    //share recipe post with id
+
     const shareRecipe = async (title, id) => {
         if (navigator.share) {
             try {
@@ -294,10 +300,12 @@ export const GlobalContextProvider = ({ children }) => {
         return () => unsubscribe(); // Cleanup the listener when the component unmounts
     }, [auth]);
 
-
+    const exportedFunc = {
+        user, signup, login, logout, UserDetails, fetchAllReceiepe, AllReciepe, setSearchRecipe, SearchRecipe, setsearchtext, searchtext, Search, savepost, fetchsavedpost, savedpost, isSavedPostLoading, shareRecipe, fetchlatest, isfetchlatest, CancelFetchLatest
+    }
 
     return (
-        <GlobalContext.Provider value={{ user, signup, login, logout, UserDetails, fetchAllReceiepe, AllReciepe, setSearchRecipe, SearchRecipe, setsearchtext, searchtext, Search, savepost, fetchsavedpost, savedpost, isSavedPostLoading, shareRecipe, fetchlatest, isfetchlatest, CancelFetchLatest }}>
+        <GlobalContext.Provider value={exportedFunc}>
             {children}
         </GlobalContext.Provider>
     );
