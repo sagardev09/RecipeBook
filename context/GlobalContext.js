@@ -282,6 +282,7 @@ export const GlobalContextProvider = ({ children }) => {
 
 
     useEffect(() => {
+        fetchAllReceiepe()
         // Use onAuthStateChanged to handle initial authentication state
         const unsubscribe = onAuthStateChanged(auth, (User) => {
             if (User) {
